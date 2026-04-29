@@ -25,7 +25,31 @@ const ingestDoctors = catchAsync(async (req: Request, res: Response) => {
   })
 });
 
+
+const queryRag=catchAsync(async(req: Request, res: Response)=>{
+
+const {query,limit,sourceType,asJson}=req?.body;
+
+    if(!query){
+      throw new Error("Query is required");
+    }
+
+  const result = await ragService.generateAnswer(query, limit,sourceType,asJson);
+
+  if(result === null || result === undefined){
+    throw new Error("Doctors data genarate answer failed")
+  }
+
+  sendResponse(res, {
+    success: true,
+    httpStatusCode: status.OK,
+    message: `Doctors data generate answer completed. Total: ${result}`,
+    data: { count: result }
+  })
+})
+
 export const RagController = {
   getStats,
   ingestDoctors,
+  queryRag
 };

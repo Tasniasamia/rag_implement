@@ -6,6 +6,7 @@ const convertLiteral = (data: number[]) => {
   return `[${data?.join(",")}]`;
   // output: "[0.23,-0.87,0.41]"  ← PostgreSQL vector format
 };
+
 export class IndexingService {
   private embeddingService: EmbeddingService;
 
@@ -119,4 +120,7 @@ export class IndexingService {
 
     return indexingCount;
   }
+ 
+
+
 }
