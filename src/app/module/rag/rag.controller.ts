@@ -35,16 +35,13 @@ const {query,limit,sourceType,asJson}=req?.body;
     }
 
   const result = await ragService.generateAnswer(query, limit,sourceType,asJson);
-
-  if(result === null || result === undefined){
-    throw new Error("Doctors data genarate answer failed")
-  }
+  console.log("result",result);
 
   sendResponse(res, {
     success: true,
     httpStatusCode: status.OK,
-    message: `Doctors data generate answer completed. Total: ${result}`,
-    data: { count: result }
+    message: `Doctors data generate answer completed`,
+    data: result
   })
 })
 

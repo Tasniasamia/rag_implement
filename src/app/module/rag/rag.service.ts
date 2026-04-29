@@ -52,6 +52,7 @@ async generateAnswer(query:string,
     const context=(retrivalDocuments as any)?.filter((doc:any)=>doc.content)?.map((doc:any)=>doc.content);
 
     let answer = await this.llmService.generateAnswer( query,context,asJson);
+    return JSON.parse(answer);
 
 }
 
