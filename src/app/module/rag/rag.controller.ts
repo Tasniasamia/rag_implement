@@ -34,7 +34,11 @@ const ingestDoctors = catchAsync(async (req: Request, res: Response) => {
 
 const queryRag=catchAsync(async(req: Request, res: Response)=>{
 
-const {query,limit,sourceType,asJson}=req?.body;
+const {query}=req?.body;
+
+let sourceType="doctors"
+let limit=5
+let asJson=true
 
     if(!query){
       throw new Error("Query is required");
